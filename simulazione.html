@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+{
+/*Esercizio 1: Letterali oggetti
+Scrivi una funzione che prenda in input un array di 6 oggetti rappresentanti persone (nome, cognome, età) e
+restituisca un nuovo array contenente solo le persone con un'età superiore a 30 anni. Stampare le informazioni di tutte le persone del nuovo array.*/
+
+let DatiPersonali = [
+    {
+        nome : "marco",
+        cognome : "Tarallo",
+        età : 24,
+    },
+
+    {
+        nome : "federico",
+        cognome : "santi",
+        età : 70,
+    },
+
+    {
+        nome : "vito",
+        cognome : "russo",
+        età : 65,
+    },
+
+    {
+        nome : "giorgia",
+        cognome : "bianchi",
+        età : 17,
+    },
+
+    {
+        nome : "francesco",
+        cognome : "rossi",
+        età : 44,
+    },
+
+    {
+        nome : "riccardo",
+        cognome : "Tirolesi",
+        età : 88,
+    }
+
+]
+// creo un array vuoto al cui interno andrò a stampare le persone sopra i 30 anni e un let  in cui definisco le persone anziane
+let anziani = []
+let seiAnziano = 60
+// creo una funzione all'interno, un foreach che mi cicla quelli con più di 60 anni
+function funOlderPerson(DatiPersonali, seiAnziano) {
+    DatiPersonali.forEach((el) => {
+// faccio un push delle persone con più di 60 anni
+    if (el.età > seiAnziano) {
+        anziani.push(el.nome)
+        anziani.push(el.cognome)
+        anziani.push(el.età)
+    } 
+  })
+}
+// richiamo la funzione fuori e stampo
+funOlderPerson(DatiPersonali, seiAnziano)
+console.log(anziani);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+{
+/*Esercizio 2: Map
+Scrivi una funzione chiamata moltiplicaArray che prenda in input un array di numeri e un numero intero, che
+funge da "fattore di moltiplicazione". La funzione deve restituire un nuovo array in cui ogni numero dell'array originale è moltiplicato per il fattore di moltiplicazione dato.
+Chiamare la funzione 3 volte, con 3 array e 3 fattori di moltiplicazione differenti per stampare in output i 3 array prodotti*/
+
+let MyArray = [5 ,10 ,15 ,20 ] 
+let moltiplicatore = 10
+let arrayVuoto = [] //creo un array vuoto dove pushare i numeri moltiplicati
+
+function moltiplicaArray() {
+    MyArray.forEach((num) => { // con un for each prendo ogni elemento dentro all'array e lo moltiplico
+    let somma = num * moltiplicatore 
+    arrayVuoto.push(somma) // faccio il push della somma moltiplicata
+    }) 
+    console.log(arrayVuoto); 
+}
+
+moltiplicaArray(moltiplicatore) // confuso nell' richiamarla 3 volte???
+}
+
+
+
+
+
+{
+/*Esercizio 3: Set
+Scrivi una funzione chiamata unisciSet che prenda in input due set composti da 5 numeri ciascuno, e restituisca un nuovo set contenente tutti gli elementi del primo che NON sono presenti nel secondo.
+Stampare in output il set risultante*/
+
+const set1 = new Set([10 ,20 ,30 ,40 ,50]);
+const set2 = new Set([20 ,20 ,70 ,40 ,100])
+let setContNum = new Set () // creo un set vuoto dove pushare i numeri
+function unisciSet() {  // nella funzione creo un foreach che mi prenda tutti i numeri e li confronti 
+    set1.forEach((num) =>{
+    if (!set2.has (num)) { //nell if dichiaro di stampare tutti i numeri non presenti in set2 con !
+        setContNum.add(num)
+    }
+    }) 
+    console.log(setContNum);
+}
+unisciSet()   
+}
+
+
+
+
+{
+/*Esercizio 4: Funzioni
+Crea una funzione chiamata salutaPersona che prende in ingresso un oggetto.
+Se l'oggetto passato come parametro NON ha una proprietà chiamata "rate", la funzione stampa il messaggio
+"nessun rate". In caso contrario, se il valore della proprietà rate è compreso tra 0 e 10, stampa "rate basso", se
+è compreso tra 11 e 50 stampa "rate medio", se è compreso tra 51 e 100 stampa "rate alto".
+es
+salutaPersona({nome: mario rossi}) -> nessun rate
+salutaPersona(rate: 95) -> rate alto*/
+
+let myObject ={
+    nome: "michele",
+    cognome: "simoncelli",
+    rate: 1
+}
+
+function salutaPersona(myObject) { // nella funzione definisco se rate è presente in mObject
+    if (typeof myObject.rate == "undefined") { //aiuto in rete per creare questo if
+        console.log("nessun rate presente")
+    } 
+    else if(myObject.rate >= 0 && myObject.rate < 10)
+    console.log("rate basso");
+    else if(myObject.rate >= 11 && myObject.rate < 50)
+    console.log("rate medio");
+    else if(myObject.rate >= 51 && myObject.rate < 100)
+    console.log("rate alto");
+}   
+salutaPersona(myObject)
+}
+
+
+
+
+
+
+
+
+
+{
+/*Esercizio 1: Date
+Scrivi una funzione chiamata calcolaGiorni che prenda in input due oggetti Date rappresentanti due date diverse e restituisca il numero di giorni trascorsi tra le due date.
+Chiamare la funzione per stampare in output il risultato.
+La funzione deve prendere in considerazione questa caratteristica: se la seconda data è un giorno
+cronologicamente pari o successivo alla prima data, si procede con la normale esecuzione sopra elencata.
+Se la seconda data è un giorno cronologicamente precedente alla prima data, viene prodotto manualmente un
+errore che blocca l'applicazione*/
+let primaData ={
+   data:new Date ("2000-12-08")
+}
+let secondaData ={
+    data: new Date ("2000-12-13")
+}
+
+//creo le due variabili
+
+function calcolaGiorni() {  //nella funzione calcolo i secondi in un giorno, e tramite getime prendo i secondi presenti nelle date infine divido i secondi delle date con quelli presenti in un giorno
+    if (secondaData.data >= primaData.data) {
+        let SecondiGiorno = 24 * 60 * 60 * 1000
+        let differenzaSecondi = secondaData.data.getTime() - primaData.data.getTime()
+        let differenzaGiorni = differenzaSecondi / SecondiGiorno
+
+        console.log( `i giorni di differenza sono : ${differenzaGiorni}  ` );  
+    }
+    else{
+        throw new Error("la seconda data deve essere maggiore della prima")
+    }
+    
+}
+
+calcolaGiorni()
+}
+
+
+
+
+
+
+
+{
+/*Esercizio 2: Letterali oggetti
+Scrivi una funzione confrontaOggetti che prenda in input due oggetti con caratteristiche (proprietà e valori)
+scelti a piacere e restituisca true se hanno le stesse proprietà e se tutti i valori delle loro proprietà
+corrispondenti sono uguali, altrimenti false.
+es
+o1 = {nome: mario, cognome = rossi}
+o2 = {nome: mario, cognome = rossi}
+confrontaOggetti(o1, o2) da true
+o1 = {nome: mario, cognome = rossi}
+o2 = {x: 10, y = 20}
+confrontaOggetti(o1, o2) da false*/
+
+let ogg1 = {nome: "mario", cognome : "rossi"}
+let ogg2 = {nome: "mario", cognome : "rossi"}
+//all'interno della funzione confronto confronto i 2 oggetti 
+function confrontaOggetti() {
+if (ogg1.nome==ogg2.nome && ogg1.cognome==ogg2.cognome ) {
+    console.log(true);
+}  
+else{
+    console.log(false);
+}
+}
+confrontaOggetti()
+}
+
+
+
+/*Esercizio 3: Funzioni come parametri e metodo map
+Scrivi una funzione chiamata mappaNumeri, che prende come primo parametro un array di numeri, e come
+secondo parametro una funzione che internamente a mappaNumeri sarà utilizzata come parametro per il
+metodo map, chiamato per creare un nuovo array con il criterio utilizzato dalla funzione passata. Questo array
+verrà stampato internamente a mappaNumeri.
+Chiamare la funzione mappaNumeri 2 volte, sia per stampare il doppio dei numeri dell'array passato come
+primo parametro, sia per stampare i suoi numeri aumentati di 10.
+es
+mappaNumeri( [10, 20, 30], ?fn? ) stampa 20 40 60
+mappaNumeri( [10, 20, 30], ?fn? ) stampa 20 30 40
+dove ?fn? saranno le apposite funzioni passate come parametro create da voi*/
+
+let myArray = [10 , 20, 30, 40]
+let nuovoarray = myArray.map()
+function mappaNumeri(myFunction) {
+    function myFunction() {
+       let nuovoarray = my* 2
+    }  
+    console.log(nuovoarray);
+}
+nuovoarray()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>
